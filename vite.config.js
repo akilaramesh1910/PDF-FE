@@ -6,11 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
+      '/convert': 'http://localhost:8080',
+      '/merge': 'http://localhost:8080',
+      '/split': 'http://localhost:8080',
+      '/compress': 'http://localhost:8080',
+      '/extract': 'http://localhost:8080',
+      '/rotate': 'http://localhost:8080',
+      '/reorder': 'http://localhost:8080',
     }
   }
 })

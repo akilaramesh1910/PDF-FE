@@ -26,14 +26,14 @@ const conversionPairs = [
 ];
 
 const tools = [
-    { id: 'convert', label: 'Convert', icon: ArrowRight, endpoint: '/api/convert' },
-    { id: 'merge', label: 'Merge', icon: FileText, endpoint: '/api/merge' },
-    { id: 'split', label: 'Split', icon: FileText, endpoint: '/api/split' },
-    { id: 'compress', label: 'Compress', icon: FileText, endpoint: '/api/compress' },
-    { id: 'extract-text', label: 'Extract Text', icon: FileText, endpoint: '/api/extract/text' },
-    { id: 'extract-images', label: 'Extract Images', icon: FileText, endpoint: '/api/extract/images' },
-    { id: 'rotate', label: 'Rotate', icon: FileText, endpoint: '/api/rotate' },
-    { id: 'reorder', label: 'Reorder', icon: FileText, endpoint: '/api/reorder' },
+    { id: 'convert', label: 'Convert', icon: ArrowRight, endpoint: '/convert' },
+    { id: 'merge', label: 'Merge', icon: FileText, endpoint: '/merge' },
+    { id: 'split', label: 'Split', icon: FileText, endpoint: '/split' },
+    { id: 'compress', label: 'Compress', icon: FileText, endpoint: '/compress' },
+    { id: 'extract-text', label: 'Extract Text', icon: FileText, endpoint: '/extract/text' },
+    { id: 'extract-images', label: 'Extract Images', icon: FileText, endpoint: '/extract/images' },
+    { id: 'rotate', label: 'Rotate', icon: FileText, endpoint: '/rotate' },
+    { id: 'reorder', label: 'Reorder', icon: FileText, endpoint: '/reorder' },
 ];
 
 function App() {
@@ -99,7 +99,8 @@ function App() {
         }
 
         try {
-            const response = await axios.post(tool.endpoint, formData, {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
+            const response = await axios.post(`${baseUrl}${tool.endpoint}`, formData, {
                 responseType: 'blob',
                 headers: {
                     'Content-Type': 'multipart/form-data',
